@@ -94,6 +94,3 @@ let question9 = {
 
 }
 
-
-
-//select random question

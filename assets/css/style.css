@@ -22,7 +22,7 @@ background-color: var(--color-background);
 .gameTitle {
     font-family: var(--fontsTitle);
 }
-.time{
+.countdownTimer{
     font-family: var(--fontsClock);
 }
 

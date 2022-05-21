@@ -4,7 +4,7 @@ import * as scoreBoard from './scoreKeeper.js';
 
 //Set Game Name
 let gameName = document.querySelector(".gameTitle");
-gameName.innerHTML = "WordWise Trivia Game";
+gameName.innerHTML = "WordWise - Trivia Game";
 
 
 
