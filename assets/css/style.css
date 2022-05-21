@@ -1,0 +1,23 @@
+:root{
+
+}
+
+* {
+
+}
+
+header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+main div{
+    display:block;
+    flex: column;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 1px solid blue;
+
+}
