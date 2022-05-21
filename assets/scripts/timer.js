@@ -4,13 +4,13 @@ var timeEl = document.querySelector(".time");
 // Selects element by id
 var mainEl = document.getElementById("main");
 
-var secondsLeft = 120000;
+var secondsLeft = 1200;
 
 export function setTime() {
     // Sets interval in variable
     var timerInterval = setInterval(function () {
         secondsLeft--;
-        timeEl.textContent = secondsLeft + " Remaining.";
+        timeEl.textContent = "T-" + secondsLeft;
 
         if (secondsLeft === 0) {
 //what should happen when done
