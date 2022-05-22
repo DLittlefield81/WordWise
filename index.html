@@ -20,15 +20,15 @@
             <h1 class="gameTitle"></h1>
         </div>
         <div>
-            <h2 class="countdownTimer"></h2>
+            <h2 class="countdownTimer gameSubTitle"></h2>
         </div>
     </header>
     <main class="row">
         <div class="gameBoard">
             <h1 align="center" class="gameTitle">Questions</h1>
             <div id="question-container" class="hide">
-                <div id="question">Question</div>
-                <div id="answer-buttons" class="btn-grid fontsAnswers">
+                <div id="question" class="gameSubTitle">Question</div>
+                <div id="answer-buttons" class="btn-grid">
                     <button class="btn">Answer 1</button>
                     <button class="btn">Answer 2</button>
                     <button class="btn">Answer 3</button>
@@ -54,21 +54,19 @@
         <div class="scoreBoard">
             <div>
                 <h1 align="center" class="gameTitle">Score</h1>
-                <p align="center" class="gameSubTitle">Register Your Score</p>
-                <p>Name: <span id="rank-saved-name"></span></p>
             </div>
             <div>
-                <form>
-                    <label for="playerName">Name: </label>
-                    <input id="ranks-playerName" name="playerName"></input>
-                    <button id="ranks-save" class="">SAVE</button>
+                <form id="rank-form" method="POST">
+                    <label for="rank-text" class="gameSubTitle">Register Your Score</label>
+                    <input type="text" placeholder="Player Name" name="rank-text" id="rank-text" />
                 </form>
-
+                <span id="rank-count" hidden="true">0</span>
+                <ul id="rank-list"></ul>
 
             </div>
             <div></div>
             <div>
-                
+
             </div>
 
 
@@ -77,8 +75,8 @@
 
     </main>
     <script type="module" src="./assets/scripts/primaryScript.js"></script>
-    <script type="module" src="./assets/scripts/questionList.js"></script>
-    <script type="module" src="./assets/scripts/scoreKeeper.js"></script>
+    <!-- <script type="module" src="./assets/scripts/questionList.js"></script>-->
+    <script type="module" src="./assets/scripts/playerRanks.js"></script> 
 </body>
 
 </html>
