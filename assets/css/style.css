@@ -5,9 +5,12 @@
 --color-gameboard-font: hsl(0, 0%, 100%);
 --color-scoreboard: hsl(258, 100%, 32%);
 --color-scoreboard-font: hsl(0, 0%, 100%);
+--color-btn: hsl(0, 0%, 100%);
 --color-background: hsl(243, 100%, 91%);
 --color-shadow: hsl(0, 0%, 50%);
 --fontsTitle: 'Lobster','Courier New',Courier,monospace;
+--fontsSubTitle: 'Kanit', 'Courier New', Courier, monospace;
+--fontsBody: 'Kanit', 'Courier New', Courier, monospace;
 --fontsClock: 'Permanent Marker', 'Courier New', Courier, monospace;
 --fontsQuestion: 'Kanit', 'Courier New', Courier, monospace;
 --fontsResponse: 'Grape Nuts','Courier New', Courier, monospace;
@@ -15,12 +18,16 @@
 
 * {
     margin: 0;
+    font-family: var(--fontsBody);
 }
 body {
 background-color: var(--color-background);
 }
 .gameTitle {
     font-family: var(--fontsTitle);
+}
+.gameSubTitle {
+    font-family: var(--fontsSubTitle);
 }
 .countdownTimer{
     font-family: var(--fontsClock);
@@ -30,6 +37,13 @@ font-family: var(--fontsQuestion);
 }
 .responseStyle{
 font-family: var(--fontsResponse);
+}
+.btn{
+    background-color: var(--color-btn);
+    border: 0px;
+    margin: 10px;
+    padding :10px 20px 10px 20px;
+    border-radius: 10px;
 }
 
 header {
@@ -66,8 +80,7 @@ header {
     color: var(--color-gameboard-font);
     background-color: var(--color-gameboard);
     width: 100%;
-    padding: 10px;
-    height: 100px;    
+    padding: 10px;    
     box-shadow: 10px 10px 10px var(--color-shadow);
     border-radius: 10px;
 }
@@ -80,7 +93,7 @@ header {
     margin: 10px;
     color: var(--color-scoreboard-font);
     background-color: var(--color-scoreboard);
-    height: 100px;
+
     padding: 10px;
     width: 100%;    
     box-shadow: 10px 10px 10px var(--color-shadow);

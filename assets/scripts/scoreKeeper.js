@@ -1,52 +1,37 @@
-let todoInput = document.querySelector("#todo-text");
-let todoForm = document.querySelector("#todo-form");
-let todoList = document.querySelector("#todo-list");
-let todoCountSpan = document.querySelector("#todo-count");
+let ranksPlayerName = document.getElementById("ranks-playerName");
+var ranksSavedName = document.getElementById("rank-saved-name");
+let ranksPlayerScore = document.getElementById("ranks-score");
+let ranksSaveButton = document.getElementById("ranks-save");
 
+function savePlayerRank() {
+    // Save related form data as an object
+    let ranksScoreChart = {
+        ranksPlayerName: ranksPlayerName.value,
+        //ranksPlayerScore: ranksPlayerScore.valuetrim()    //SET SCORE HERE
+    };
+    // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+    localStorage.setItem("ranksScoreChart", JSON.stringify(ranksScoreChart));
+}
 
-
-
-
-//Save Score to localStorage
-export function onGameOver() {}
-
-function renderPlayerScores() {
-    // Clear todoList element and update todoCountSpan
-    playerList.innerHTML = "";
-    todoCountSpan.textContent = todos.length;
-
-    // Render a new li for each todo
-    for (var i = 0; i < todos.length; i++) {
-        var todo = todos[i];
-
-        var li = document.createElement("li");
-        li.textContent = todo;
-        li.setAttribute("data-index", i);
-
-        var button = document.createElement("button");
-        button.textContent = "Complete ✔️";
-
-        li.appendChild(button);
-        playerList.appendChild(li);
+function renderLastRank() {
+    // Use JSON.parse() to convert text to JavaScript object
+    var lastRank = JSON.parse(localStorage.getItem("ranksScoreChart"));
+    // Check if data is returned, if not exit out of the function
+    if (lastRank !== null) {
+        document.getElementById("ranks-playerName").innerHTML = lastRank.ranksPlayerName;
+        // document.getElementById("##CHANGE TO COUNT##").innerHTML = lastRank.ranksPlayerScore;  //RETRIEVE SCORE
+    } else {
+        return;
     }
 }
 
+ranksSaveButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    savePlayerRank();
+    renderLastRank();
+});
 
-
-
-
-// The init() function fires when the page is loaded 
-export function init() {
-    // Get stored scores on page load from localStorage
-    let storedPlayerScores = JSON.parse(localStorage.getItem("playerScores"));
-
-    // If todos were retrieved from localStorage, update the todos array to it
-    if (storedPlayerScores !== null) {
-        playerScores = storedPlayerScores;
-    }
-
-    // This is a helper function that will render todos to the DOM
-    renderPlayerScores();
+function init() {
+    renderLastRank();
 }
-// Runs on load
-init(); //TURN THIS FUNCTION ON WHEN READY
+init();

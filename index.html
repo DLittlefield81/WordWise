@@ -24,57 +24,61 @@
         </div>
     </header>
     <main class="row">
-
         <div class="gameBoard">
-<h1 align="center" class="gameTitle">Questions</h1>
-            <h3 class="questionStyle">test question</h3>
-            <h4 class="responseStyle">test answer</h4>
-<div class="content">
-    <div class="main">
-        <h1>Quiz</h1>
-        <div id="question-container" class="hide">
-            <div id="question">Question</div>
-            <div id="answer-buttons" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
+            <h1 align="center" class="gameTitle">Questions</h1>
+            <div id="question-container" class="hide">
+                <div id="question">Question</div>
+                <div id="answer-buttons" class="btn-grid fontsAnswers">
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+                </div>
+
+                <div class="controls">
+                    <!-- Start button needs to disapper when game starts -->
+                    <button id="start-btn" class="start-btn btn">Start</button>
+                    <!-- next button needs to to be deleted -->
+                    <button id="next-btn" class="next-btn btn hide">Next</button>
+
+
+
+                </div>
             </div>
         </div>
-    </div>
-    <div class="controls">
-        <!-- Start button needs to disapper when game starts -->
-        <button id="start-btn" class="start-btn btn">Start</button>
-        <!-- next button needs to to be deleted -->
-        <button id="next-btn" class="next-btn btn hide">Next</button>
-    </div>
-
-</div>
 
 
 
 
-
-            <div>
-                <form id="todo-form" method="POST">
-                    <label for="todo-text">Enter Your Name: </label>
-                    <input type="text" placeholder="Player Name" name="todo-text" id="todo-text" />
-                </form>
-            </div>
-        </div>
 
         <div class="scoreBoard">
-            <h1 align="center" class="gameTitle">Score</h1>
+            <div>
+                <h1 align="center" class="gameTitle">Score</h1>
+                <p align="center" class="gameSubTitle">Register Your Score</p>
+                <p>Name: <span id="rank-saved-name"></span></p>
+            </div>
+            <div>
+                <form>
+                    <label for="playerName">Name: </label>
+                    <input id="ranks-playerName" name="playerName"></input>
+                    <button id="ranks-save" class="">SAVE</button>
+                </form>
+
+
+            </div>
+            <div></div>
+            <div>
+                
+            </div>
 
 
 
-            <p>Winner<span id="todo-count">0</span></p>
-            <ul id="todo-list"></ul>
         </div>
 
     </main>
     <script type="module" src="./assets/scripts/primaryScript.js"></script>
     <script type="module" src="./assets/scripts/questionList.js"></script>
+    <script type="module" src="./assets/scripts/scoreKeeper.js"></script>
 </body>
 
 </html>
