@@ -1,6 +1,4 @@
-let questionArray = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question0]
 
-let randomQuestion = questionArray[Math.floor(Math.random() * questionArray.length)];
 //List of questions
 let question0 = {
     Q: 'Which method remove variables from the end of an array?',
@@ -94,3 +92,7 @@ let question9 = {
 
 }
 
+let questionArray = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question0]
+
+let randomQuestion = questionArray[Math.floor(Math.random() * questionArray.length)];
+console.log('at RandomQuestion' + randomQuestion)

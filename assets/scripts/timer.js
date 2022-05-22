@@ -1,10 +1,10 @@
 // Selects element by class
-var timeEl = document.querySelector(".countdownTimer");
+let timeEl = document.querySelector(".countdownTimer");
 
 // Selects element by id
-var mainEl = document.getElementById("main");
+//let mainEl = document.getElementById("main");
 //Sets game timer length
-var secondsLeft = 10;
+let secondsLeft = 10;
 
 export function setTime() {
     // Sets interval in variable
@@ -21,7 +21,7 @@ export function setTime() {
     }, 1000);
 }
 
-// Function to run at end of game
+// Function to run at end of game [time=0 or all questions answered]
 function gameOver() {
     timeEl.textContent = "Time's Up";
 

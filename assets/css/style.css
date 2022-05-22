@@ -7,9 +7,9 @@
 --color-scoreboard-font: hsl(0, 0%, 100%);
 --color-background: hsl(243, 100%, 91%);
 --color-shadow: hsl(0, 0%, 50%);
---fontsTitle: Lobster,'Courier New',Courier,monospace;
+--fontsTitle: 'Lobster','Courier New',Courier,monospace;
 --fontsClock: 'Permanent Marker', 'Courier New', Courier, monospace;
---fontsQuestion: Kanit, 'Courier New', Courier, monospace;
+--fontsQuestion: 'Kanit', 'Courier New', Courier, monospace;
 --fontsResponse: 'Grape Nuts','Courier New', Courier, monospace;
 }
 
@@ -24,6 +24,12 @@ background-color: var(--color-background);
 }
 .countdownTimer{
     font-family: var(--fontsClock);
+}
+.questionStyle{
+font-family: var(--fontsQuestion);
+}
+.responseStyle{
+font-family: var(--fontsResponse);
 }
 
 header {
