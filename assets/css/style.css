@@ -64,6 +64,7 @@ input {
     margin: 10px;
     padding: 10px 20px 10px 20px;
     border-radius: 10px;
+    width: 98%;
 }
 
 header {
@@ -120,8 +121,7 @@ header {
     border-radius: 10px;
 }
 
-.start-btn,
-.next-btn {
+.start-btn {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;

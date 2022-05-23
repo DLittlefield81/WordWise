@@ -1,17 +1,53 @@
 let startButton = document.getElementById('start-btn');
-let nextButton = document.getElementById('next-btn');
+
 let questionContainerElement = document.getElementById('question-container');
 let questionElement = document.getElementById('question');
 let answerButtonsElement = document.getElementById('answer-buttons');
 let countE1 = document.querySelector("#count");
-let scoreCount = 0
+let scoreCount = 0;
+//============Game Title======================
+//Set Game Name
+let gameName = document.querySelector(".gameTitle");
+gameName.innerHTML = "CODE QUIZ";
 
+//==================timer function====================
+
+// Select element by class
+let timeEl = document.querySelector(".countdownTimer");
+
+
+//Set game timer length
+let secondsLeft = 121;
+
+export function setTime() {
+    // Set interval in variable
+    let timerInterval = setInterval(function () {
+        secondsLeft--;
+        timeEl.textContent = "Timer: " + secondsLeft;
+
+        if (secondsLeft <= 0) {
+            //Time Expired Action
+            //hide game board
+            //show player rank entry
+            clearInterval(timerInterval);
+            gameOver();
+
+        }
+
+    }, 1000);
+}
+
+// Function to run at end of game
+function gameOver() {
+
+    timeEl.textContent = "Time is Up";
+}
 
 
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', () => {
+answerButtonsElement.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
@@ -21,6 +57,7 @@ function startGame() {
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
+    setTime();
     setNextQuestion()
 }
 
@@ -40,12 +77,12 @@ function showQuestion(question) {
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
+
     })
 }
 
 function resetState() {
 
-    nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
@@ -58,7 +95,8 @@ function selectAnswer(e) {
     console.log(correct);
     Array.from(answerButtonsElement.children).forEach(button => {})
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove('hide')
+
+
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
@@ -67,16 +105,15 @@ function selectAnswer(e) {
 
 function processResults(isCorrect) {
     if (!isCorrect) {
-        // insert negative time
+        secondsLeft = secondsLeft - 15;
         return;
     }
-
     scoreCount = parseInt(countE1.textContent, 10) || 0;
-
+    //increase point value
     countE1.textContent = scoreCount + 100;
+    //next question
 }
 
-//import gameQuestions as questions from 
 //Create List of questions
 let questions = [
 

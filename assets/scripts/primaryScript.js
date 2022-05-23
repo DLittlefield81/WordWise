@@ -3,8 +3,7 @@ import * as countdownClock from './timer.js';
 //import * as scoreBoard from './playerRanks.js';
 
 //Set Game Name
-let gameName = document.querySelector(".gameTitle");
-gameName.innerHTML = "WordWise - Trivia Game";
+
 
 
 

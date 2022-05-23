@@ -32,6 +32,7 @@
                     <div id="question-container" class="hide">
                         <div id="question"></div>
                         <div id="answer-buttons" class="btn-grid">
+
                             <button class="btn">Answer 1</button>
                             <button class="btn">Answer 2</button>
                             <button class="btn">Answer 3</button>
@@ -42,8 +43,6 @@
                 <div class="controls">
                     <!-- Start button needs to disapper when game starts -->
                     <button id="start-btn" class="start-btn btn">Start</button>
-                    <!-- next button needs to to be deleted -->
-                    <button id="next-btn" class="next-btn btn hide">Next</button>
                 </div>
 
             </div>
@@ -51,7 +50,7 @@
             <!-- Win game form entry -->
 
             <!-- needs to be made invisible until win/game end -->
-           
+
         </div>
 
 
@@ -61,6 +60,7 @@
         <div class="scoreBoard">
             <div>
                 <h1 align="center" class="gameTitle">Score</h1>
+                <div id="score">Current Score <span id="count"> 0 </span></div>
             </div>
             <div>
                 <form id="rank-form" method="POST">
@@ -82,9 +82,9 @@
         </div>
 
     </main>
-    <script type="module" src="./assets/scripts/primaryScript.js"></script>
+
     <script type="module" src="./assets/scripts/playgame.js"></script>
-    <!-- <script type="module" src="./assets/scripts/playerRanks.js"></script> -->
+
 </body>
 
 </html>
