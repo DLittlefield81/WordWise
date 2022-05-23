@@ -23,7 +23,7 @@ function showHighScores() {
     const highScoreList = document.getElementById(HIGH_SCORES);
 
     highScoreList.innerHTML = highScores
-        .map((score) => `<li>${score.score} - ${score.name}`)
+        .map((score) => `<li>${score.score} ${score.name}`)
         .join('');
 }
 

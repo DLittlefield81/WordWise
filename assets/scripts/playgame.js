@@ -1,14 +1,23 @@
 let startButton = document.getElementById('start-btn');
-
 let questionContainerElement = document.getElementById('question-container');
 let questionElement = document.getElementById('question');
 let answerButtonsElement = document.getElementById('answer-buttons');
 let countE1 = document.querySelector("#count");
+let scoreRank = document.querySelector("#rank-form");
+let rankInput = document.querySelector("#rank-text");
+let rankForm = document.querySelector("#rank-form");
+let rankList = document.querySelector("#rank-list");
+let rankCountSpan = document.querySelector("#rank-count");
+var clearScores = document.querySelector("#clear-Scores");
+let ranks = [];
 let scoreCount = 0;
+
+
 //============Game Title======================
 //Set Game Name
 let gameName = document.querySelector(".gameTitle");
 gameName.innerHTML = "CODE QUIZ";
+
 
 //==================timer function====================
 
@@ -44,6 +53,73 @@ function gameOver() {
 }
 
 
+//==========Scoreboard===============
+// The following function renders items in a todo list as <li> elements
+function renderRanks() {
+    // Clear todoList element and update todoCountSpan
+    rankList.innerHTML = "";
+    rankCountSpan.textContent = ranks.length;
+
+
+    //=================ScoreBoard===========
+    // Render a new li for each todo
+    for (let i = 0; i < ranks.length; i++) {
+        let rank = ranks[i];
+
+        let li = document.createElement("li");
+        li.textContent = rank;
+        li.setAttribute("data-index", i);
+        rankList.appendChild(li);
+        startButton.classList.remove('hide')
+        scoreRank.classList.add("hide")
+    };
+
+
+}
+// This function is being called below and will run when the page loads.
+function scoreboardInit() {
+    // Get stored todos from localStorage
+    let storedRanks = JSON.parse(localStorage.getItem("playerRanks"));
+
+    // If todos were retrieved from localStorage, update the todos array to it
+    if (storedRanks !== null) {
+        ranks = storedRanks;
+    }
+
+    // This is a helper function that will render todos to the DOM
+    renderRanks();
+
+}
+
+function storeRanks() {
+    // Stringify and set key in localStorage to todos array
+    localStorage.setItem("playerRanks", JSON.stringify(ranks));
+}
+
+// Add submit event to form
+rankForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let rankText = rankInput.value.trim();
+
+    // Return from function early if submitted todoText is blank
+    if (rankText === "") {
+        return;
+    }
+
+    // Add new todoText to todos array, clear the input
+    ranks.push(rankText);
+    rankInput.value = "";
+
+    // Store updated todos in localStorage, re-render the list
+    storeRanks();
+    renderRanks();
+});
+
+// Calls init to retrieve data and render it to the page on load
+scoreboardInit()
+
+//================GAME BOARD================
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
@@ -53,6 +129,8 @@ answerButtonsElement.addEventListener('click', () => {
 })
 
 function startGame() {
+
+
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
@@ -98,8 +176,13 @@ function selectAnswer(e) {
 
 
     } else {
+
+        questionContainerElement.classList.add("hide")
         startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
+        scoreRank.classList.remove("hide")
+
+        // 
+
     }
 }
 

@@ -26,7 +26,7 @@ function renderRanks() {
 }
 
 // This function is being called below and will run when the page loads.
-function init() {
+function scoreboardInit() {
     // Get stored todos from localStorage
     let storedRanks = JSON.parse(localStorage.getItem("playerRanks"));
 
@@ -64,14 +64,6 @@ rankForm.addEventListener("submit", function (event) {
     storeRanks();
     renderRanks();
 });
-
-
-
-
-// clearScores.addEventListener("click", function () {
-//     window.localStorage.clear("playerRanks");
-// });
-
 
 // Calls init to retrieve data and render it to the page on load
 init()

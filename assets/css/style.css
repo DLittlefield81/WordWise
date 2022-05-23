@@ -46,9 +46,9 @@ body {
 
 }
 
-/* li {
+ li {
     list-style: none;
-} */
+} 
 
 input {
     color: var(--color-TextAlternate);
