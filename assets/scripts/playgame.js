@@ -16,7 +16,7 @@ let scoreCount = 0;
 //============Game Title======================
 //Set Game Name
 let gameName = document.querySelector(".gameTitle");
-gameName.innerHTML = "CODE QUIZ";
+gameName.innerHTML = "WordWise Trivia Game";
 
 
 //==================timer function====================
