@@ -2,7 +2,7 @@ let rankInput = document.querySelector("#rank-text");
 let rankForm = document.querySelector("#rank-form");
 let rankList = document.querySelector("#rank-list");
 let rankCountSpan = document.querySelector("#rank-count");
-
+var clearScores = document.querySelector("#clear-Scores");
 let ranks = [];
 
 // The following function renders items in a todo list as <li> elements
@@ -18,8 +18,11 @@ function renderRanks() {
         let li = document.createElement("li");
         li.textContent = rank;
         li.setAttribute("data-index", i);
-        rankList.appendChild(li);
-    }
+        rankList.appendChild(li); 
+        
+    };
+  
+
 }
 
 // This function is being called below and will run when the page loads.
@@ -34,6 +37,7 @@ function init() {
 
     // This is a helper function that will render todos to the DOM
     renderRanks();
+    
 }
 
 function storeRanks() {
@@ -61,6 +65,12 @@ rankForm.addEventListener("submit", function (event) {
     renderRanks();
 });
 
+
+
+
+// clearScores.addEventListener("click", function () {
+//     window.localStorage.clear("playerRanks");
+// });
 
 
 // Calls init to retrieve data and render it to the page on load

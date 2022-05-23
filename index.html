@@ -26,25 +26,32 @@
     <main class="row">
         <div class="gameBoard">
             <h1 align="center" class="gameTitle">Questions</h1>
-            <div id="question-container" class="hide">
-                <div id="question" class="gameSubTitle">Question</div>
-                <div id="answer-buttons" class="btn-grid">
-                    <button class="btn">Answer 1</button>
-                    <button class="btn">Answer 2</button>
-                    <button class="btn">Answer 3</button>
-                    <button class="btn">Answer 4</button>
-                </div>
+            <div class="content">
+                <div class="main">
 
+                    <div id="question-container" class="hide">
+                        <div id="question"></div>
+                        <div id="answer-buttons" class="btn-grid">
+                            <button class="btn">Answer 1</button>
+                            <button class="btn">Answer 2</button>
+                            <button class="btn">Answer 3</button>
+                            <button class="btn">Answer 4</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="controls">
                     <!-- Start button needs to disapper when game starts -->
                     <button id="start-btn" class="start-btn btn">Start</button>
                     <!-- next button needs to to be deleted -->
                     <button id="next-btn" class="next-btn btn hide">Next</button>
-
-
-
                 </div>
+
             </div>
+
+            <!-- Win game form entry -->
+
+            <!-- needs to be made invisible until win/game end -->
+           
         </div>
 
 
@@ -63,8 +70,9 @@
                 <span id="rank-count" hidden="true">0</span>
                 <ul id="rank-list"></ul>
 
+
             </div>
-            <div></div>
+            <div><button class="clear-Scores">Clear Scores</button></div>
             <div>
 
             </div>
@@ -75,8 +83,8 @@
 
     </main>
     <script type="module" src="./assets/scripts/primaryScript.js"></script>
-    <!-- <script type="module" src="./assets/scripts/questionList.js"></script>-->
-    <script type="module" src="./assets/scripts/playerRanks.js"></script> 
+    <script type="module" src="./assets/scripts/playgame.js"></script>
+    <!-- <script type="module" src="./assets/scripts/playerRanks.js"></script> -->
 </body>
 
 </html>
