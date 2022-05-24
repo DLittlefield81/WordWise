@@ -8,64 +8,58 @@ let rankInput = document.querySelector("#rank-text");
 let rankForm = document.querySelector("#rank-form");
 let rankList = document.querySelector("#rank-list");
 let rankCountSpan = document.querySelector("#rank-count");
-var clearScores = document.querySelector("#clear-Scores");
+let clearScores = document.getElementById("clear-Scores");
 let ranks = [];
 let scoreCount = 0;
+let shuffledQuestions, currentQuestionIndex
+let countDownTimer = document.querySelector(".countdownTimer");
 
 
-//============Game Title======================
-//Set Game Name
+//============- Game Perameters -============================
+//*****Set Game Name****** */
 let gameName = document.querySelector(".gameTitle");
 gameName.innerHTML = "WordWise Trivia Game";
 
-
-//==================timer function====================
-
-// Select element by class
-let timeEl = document.querySelector(".countdownTimer");
-
-
-//Set game timer length
+//*****Set Timer/ Game Duration****** */
 let secondsLeft = 121;
 
+
+//============- Clear Storage -============================
+clearScores.addEventListener('click', clearPlayerScores)
+
+function clearPlayerScores() {
+    window.localStorage.clear();
+}
+
+
+//============- Timer function -============================
 export function setTime() {
     // Set interval in variable
     let timerInterval = setInterval(function () {
         secondsLeft--;
-        timeEl.textContent = "Timer: " + secondsLeft;
-
+        countDownTimer.textContent = "Timer: " + secondsLeft;
         if (secondsLeft <= 0) {
-            //Time Expired Action
-            //hide game board
-            //show player rank entry
             clearInterval(timerInterval);
-            gameOver();
-
+            gameOver(); //Run Game Over Function
         }
-
     }, 1000);
 }
 
-// Function to run at end of game
+// End of Game Funtion
 function gameOver() {
-
-    timeEl.textContent = "Time is Up";
+    countDownTimer.textContent = "Time is Up"; //update timer text
 }
 
 
-//==========Scoreboard===============
-// The following function renders items in a todo list as <li> elements
+//============- Scoreboard -============================
+// Renders items into <li>
 function renderRanks() {
-    // Clear todoList element and update todoCountSpan
+    // Clear ranks and update rank count
     rankList.innerHTML = "";
-    rankCountSpan.textContent = ranks.length;
-
-
-    //=================ScoreBoard===========
-    // Render a new li for each todo
+    rankCountSpan.textContent = ranks.length; //<----------------------------------------Comment out to see
+    // Render a new li for each player entry
     for (let i = 0; i < ranks.length; i++) {
         let rank = ranks[i];
-
         let li = document.createElement("li");
         li.textContent = rank;
         li.setAttribute("data-index", i);
@@ -73,20 +67,16 @@ function renderRanks() {
         startButton.classList.remove('hide')
         scoreRank.classList.add("hide")
     };
-
-
 }
-// This function is being called below and will run when the page loads.
-function scoreboardInit() {
-    // Get stored todos from localStorage
-    let storedRanks = JSON.parse(localStorage.getItem("playerRanks"));
 
-    // If todos were retrieved from localStorage, update the todos array to it
+function scoreboardInit() {
+    // Get stored ranks from localStorage
+    let storedRanks = JSON.parse(localStorage.getItem("playerRanks"));
+    // If ranks were retrieved from localStorage, update the ranks array to it
     if (storedRanks !== null) {
         ranks = storedRanks;
     }
-
-    // This is a helper function that will render todos to the DOM
+    // This is a helper function that will render ranks to the DOM
     renderRanks();
 
 }
@@ -99,10 +89,12 @@ function storeRanks() {
 // Add submit event to form
 rankForm.addEventListener("submit", function (event) {
     event.preventDefault();
-
-    let rankText = rankInput.value.trim();
-
-    // Return from function early if submitted todoText is blank
+    let rankText = {
+        Player: rankInput.value.trim(),
+        Score: countE1.value,
+    };
+    localStorage.setItem("playerRanks", JSON.stringify(rankText));
+    // if rankText is empty string exit function
     if (rankText === "") {
         return;
     }
@@ -116,12 +108,8 @@ rankForm.addEventListener("submit", function (event) {
     renderRanks();
 });
 
-// Calls init to retrieve data and render it to the page on load
-scoreboardInit()
 
-//================GAME BOARD================
-let shuffledQuestions, currentQuestionIndex
-
+//============- GAME BOARD -============================
 startButton.addEventListener('click', startGame)
 answerButtonsElement.addEventListener('click', () => {
     currentQuestionIndex++
@@ -129,11 +117,9 @@ answerButtonsElement.addEventListener('click', () => {
 })
 
 function startGame() {
-
-
-    startButton.classList.add('hide')
+    startButton.classList.add('hide') //Hide start button after start button is pressed
     shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
+    currentQuestionIndex = 0 // <-----------------------------------------------------------------if index=10 then return?
     questionContainerElement.classList.remove('hide')
     setTime();
     setNextQuestion()
@@ -155,7 +141,6 @@ function showQuestion(question) {
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
-
     })
 }
 
@@ -172,16 +157,10 @@ function selectAnswer(e) {
     processResults(correct);
     console.log(correct);
     Array.from(answerButtonsElement.children).forEach(button => {})
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
-
-
-    } else {
-
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {} else {
         questionContainerElement.classList.add("hide")
         startButton.innerText = 'Restart'
         scoreRank.classList.remove("hide")
-
-        // 
 
     }
 }
@@ -197,9 +176,33 @@ function processResults(isCorrect) {
     //next question
 }
 
-//Create List of questions
-let questions = [
 
+//============- RUN ON LOAD -============================
+// Loads players and scores
+scoreboardInit()
+
+
+//============- Question List -============================
+let questions = [{
+        question: 'Which method remove variables from the end of an array?',
+        answers: [{
+                text: 'shift()',
+                correct: false
+            },
+            {
+                text: 'pop()',
+                correct: true
+            },
+            {
+                text: 'unshift()',
+                correct: false
+            },
+            {
+                text: 'push()',
+                correct: false
+            }
+        ]
+    },
     {
         question: 'How do you break within a string?',
         answers: [{
@@ -221,21 +224,21 @@ let questions = [
         ]
     },
     {
-        question: 'Which method remove variables from the end of an array?',
+        question: 'What are JavaScript Data Types?',
         answers: [{
-                text: 'shift()',
-                correct: false
-            },
-            {
-                text: 'pop()',
+                text: 'Number, String, Boolean, Object, Undefined',
                 correct: true
             },
             {
-                text: 'unshift()',
+                text: 'Function, String, Boolean, Object, Number',
                 correct: false
             },
             {
-                text: 'push()',
+                text: 'HTML, CSS, JS, ASP, jQuery',
+                correct: false
+            },
+            {
+                text: 'innerHTML, textarea, select, form, button',
                 correct: false
             }
         ]
@@ -261,26 +264,6 @@ let questions = [
         ]
     },
     {
-        question: 'What are JavaScript Data Types?',
-        answers: [{
-                text: 'Number, String, Boolean, Object, Undefined',
-                correct: true
-            },
-            {
-                text: 'Function, String, Boolean, Object, Number',
-                correct: false
-            },
-            {
-                text: 'HTML, CSS, JS, ASP, jQuery',
-                correct: false
-            },
-            {
-                text: 'innerHTML, textarea, select, form, button',
-                correct: false
-            }
-        ]
-    },
-    {
         question: 'What does NaN mean?',
         answers: [{
                 text: 'Not a number.',
@@ -296,6 +279,26 @@ let questions = [
             },
             {
                 text: 'Nth of a number ',
+                correct: false
+            }
+        ]
+    },
+    {
+        question: 'a notation resembling a simplified programming language, used in program design.',
+        answers: [{
+                text: 'javascript',
+                correct: false
+            },
+            {
+                text: 'hoisting',
+                correct: false
+            },
+            {
+                text: 'pseudocode',
+                correct: true
+            },
+            {
+                text: 'key pair',
                 correct: false
             }
         ]
@@ -317,26 +320,6 @@ let questions = [
             {
                 text: 'Netscape',
                 correct: true
-            }
-        ]
-    },
-    {
-        question: 'a notation resembling a simplified programming language, used in program design.',
-        answers: [{
-                text: 'javascript',
-                correct: false
-            },
-            {
-                text: 'hoisting',
-                correct: false
-            },
-            {
-                text: 'pseudocode',
-                correct: true
-            },
-            {
-                text: 'key pair',
-                correct: false
             }
         ]
     },
@@ -399,5 +382,5 @@ let questions = [
                 correct: false
             }
         ]
-    },
+    }
 ]
