@@ -47,8 +47,8 @@
         </div>
         <div class="scoreBoard">
             <div>
-                <h1 align="center" class="gameTitle">Score</h1>
-                <div id="score">Current Score <span id="count"> 0 </span></div>
+                <h1 align="center" class="gameSubTitle">Score</h1>
+                <div id="score" class="gameScores">Current Score <span id="count"> 0 </span></div>
             </div>
             <div>
                 <form id="rank-form" method="POST" class="hide">
@@ -56,11 +56,11 @@
                     <input type="text" placeholder="Player Name" name="rank-text" id="rank-text" />
                 </form>
                 <span id="rank-count" hidden="true">0</span>
-                <ul id="rank-list"></ul>
+                <ul class="gameScores" id="rank-list"></ul>
         
         
             </div>
-            <div><button id="clear-Scores" class="clear-Scores">Clear Scores</button></div>
+            <div align="center"><button id="clear-Scores" class="clear-Scores">Clear Scores</button></div>
             <div>
         
             </div>
