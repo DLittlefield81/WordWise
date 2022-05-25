@@ -9,16 +9,19 @@
     --color-Title: hsl(0, 0%, 100%);
     --fonts-Title: 'Lobster', 'Courier New', Courier, monospace;
     --color-SubTitle: hsl(0, 0%, 100%);
-    --fonts-SubTitle: 'Kanit', 'Courier New', Courier, monospace;
-    --color-Text: hsl(0, 0%, 100%);
-    --fonts-Text: 'Kanit', 'Courier New', Courier, monospace;
-    --color-TextAlternate: hsl(0, 1%, 29%);
-    --fonts-TextAlternate: 'Kanit', 'Courier New', Courier, monospace;
+    --fonts-SubTitle: 'Mouse Memoirs', 'Courier New', Courier, monospace;
+    --color-Question: hsl(0, 0%, 100%);
+    --fonts-Question: 'Permanent Marker', 'Courier New', Courier, monospace;
+    --color-Responses: hsl(0, 1%, 29%);
+    --fonts-Responses: 'Grape Nuts', 'Courier New', Courier, monospace;
+    --color-Scores: hsl(0, 0%, 100%);
+    --fonts-Scores: 'Grape Nuts', 'Courier New', Courier, monospace;
     --color-btn: hsl(0, 0%, 100%);
     --color-BtnText: hsl(237, 100%, 50%);
     --fonts-BtnText: 'Kanit', 'Courier New', Courier, monospace;
 }
 
+/* Grape+Nuts|Kanit|Lobster|Permanent+Marker|Mouse+Memoirs */
 * {
     margin: 0;
     font-family: var(--fonts-Text);
@@ -32,23 +35,44 @@ body {
 .gameTitle {
     color: var(--color-Title);
     font-family: var(--fonts-Title);
+    font-size: 40px;
 }
 
 .gameSubTitle {
     color: var(--color-SubTitle);
     font-family: var(--fonts-SubTitle);
+    font-size: 30px;
+}
+
+.gameQuestions {
+    color: var(--color-Question);
+    font-family: var(--fonts-Question);
+    font-size: 25px;
+
+}
+
+.gameResponses {
+    color: var(--color-Responses);
+    font-family: var(--fonts-Responses);
+    font-size: 20px;
 }
 
 .gameText {
     color: var(--color-Text);
     font-family: var(--fonts-Text);
     text-decoration: none;
-
+}
+.gameScores {
+    color: var(--color-Scores);
+    font-family: var(--fonts-Scores);
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
 }
 
- li {
+li {
     list-style: none;
-} 
+}
 
 input {
     color: var(--color-TextAlternate);
@@ -136,6 +160,7 @@ header {
 .hide {
     display: none;
 }
+
 #question {
     margin-top: 25px;
     font-size: 25px;

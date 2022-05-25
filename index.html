@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>WordWise</title>
-    <link rel="icon" type="image/x-icon" href="">
+    <!-- <link rel="icon" type="image/x-icon" href=""> -->
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family='Grape Nuts'|Kanit|Lobster|'Permanent Marker'">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Grape+Nuts|Kanit|Lobster|Permanent+Marker|Mouse+Memoirs">
     <!--GrapeNuts=Responses, Kanit=Questions, Lobster=Title-->
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -25,38 +26,25 @@
     </header>
     <main class="row">
         <div class="gameBoard">
-            <h1 align="center" class="gameTitle">Questions</h1>
+            <h1 align="center" class="gameSubTitle">Questions</h1>
             <div class="content">
                 <div class="main">
-
                     <div id="question-container" class="hide">
-                        <div id="question"></div>
+                        <div id="question" class="gameQuestions"></div>
                         <div id="answer-buttons" class="btn-grid">
-
-                            <button class="btn">Answer 1</button>
-                            <button class="btn">Answer 2</button>
-                            <button class="btn">Answer 3</button>
-                            <button class="btn">Answer 4</button>
+                            <button class="btn gameResponses">Answer 1</button>
+                            <button class="btn gameResponses">Answer 2</button>
+                            <button class="btn gameResponses">Answer 3</button>
+                            <button class="btn gameResponses">Answer 4</button>
                         </div>
                     </div>
                 </div>
                 <div class="controls">
-                    <!-- Start button needs to disapper when game starts -->
+                    <!--Start button-->
                     <button id="start-btn" class="start-btn btn">Start</button>
                 </div>
-
             </div>
-
-            <!-- Win game form entry -->
-
-            <!-- needs to be made invisible until win/game end -->
-
         </div>
-
-
-
-
-
         <div class="scoreBoard">
             <div>
                 <h1 align="center" class="gameTitle">Score</h1>
@@ -69,22 +57,18 @@
                 </form>
                 <span id="rank-count" hidden="true">0</span>
                 <ul id="rank-list"></ul>
-
-
+        
+        
             </div>
-            <div><button id="clear-Scores"class="clear-Scores">Clear Scores</button></div>
+            <div><button id="clear-Scores" class="clear-Scores">Clear Scores</button></div>
             <div>
-
+        
             </div>
-
-
-
+        
+        
+        
         </div>
-
     </main>
-
     <script type="module" src="./assets/scripts/playgame.js"></script>
-
 </body>
-
 </html>

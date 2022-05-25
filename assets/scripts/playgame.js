@@ -47,7 +47,7 @@ export function setTime() {
 
 // End of Game Funtion
 function gameOver() {
-    countDownTimer.textContent = "Time is Up"; //update timer text
+    countDownTimer.textContent = "Game Over"; //update timer text
 }
 
 
@@ -89,9 +89,10 @@ function storeRanks() {
 // Add submit event to form
 rankForm.addEventListener("submit", function (event) {
     event.preventDefault();
+    console.log(scoreCount)
     let rankText = {
         Player: rankInput.value.trim(),
-        Score: countE1.value,
+        Score: scoreCount
     };
     localStorage.setItem("playerRanks", JSON.stringify(rankText));
     // if rankText is empty string exit function
@@ -172,7 +173,8 @@ function processResults(isCorrect) {
     }
     scoreCount = parseInt(countE1.textContent, 10) || 0;
     //increase point value
-    countE1.textContent = scoreCount + 100;
+    scoreCount = scoreCount + 25;
+    countE1.textContent = scoreCount;
     //next question
 }
 
