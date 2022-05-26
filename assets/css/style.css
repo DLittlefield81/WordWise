@@ -1,8 +1,8 @@
 :root {
     /* Game Styling */
-    --color-header: hsl(258, 100%, 32%);
-    --color-gameboard: hsl(258, 100%, 32%);
-    --color-scoreboard: hsl(258, 100%, 32%);
+    --color-header: hsl(215, 94%, 58%);
+    --color-gameboard: hsl(188, 77%, 45%);
+    --color-scoreboard: hsl(188, 77%, 45%);
     --color-background: hsl(243, 100%, 91%);
     --color-shadow: hsl(0, 0%, 50%);
     /* Font Styling */

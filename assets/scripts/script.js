@@ -41,6 +41,7 @@ export function setTime() {
         countDownTimer.textContent = "Timer: " + timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
+            
             gameOver(); //Run Game Over Function
         }
     }, 1000);
@@ -48,6 +49,8 @@ export function setTime() {
 
 // End of Game Funtion
 function gameOver() {
+    currentQuestionIndex = 0;
+    questionContainerElement.classList.add('hide')
     countDownTimer.textContent = "Game Over"; //update timer text
 }
 
