@@ -18,6 +18,7 @@ Link to Deployed Application: https://dlittlefield81.github.io/WordWise/
 
 
 ![WordWise Trivia Game](assets/images/wordwise.png)
+![Wireframe](assets/images/wireframe.png)
 
 
 ## License
