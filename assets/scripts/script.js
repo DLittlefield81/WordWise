@@ -2,7 +2,7 @@ let startButton = document.getElementById('start-btn');
 let questionContainerElement = document.getElementById('question-container');
 let questionElement = document.getElementById('question');
 let answerButtonsElement = document.getElementById('answer-buttons');
-let countE1 = document.querySelector("#count");
+let scoreEl = document.querySelector("#count");
 let scoreRank = document.querySelector("#rank-form");
 let rankInput = document.querySelector("#rank-text");
 let rankForm = document.querySelector("#rank-form");
@@ -10,7 +10,7 @@ let rankList = document.querySelector("#rank-list");
 let rankCountSpan = document.querySelector("#rank-count");
 let clearScores = document.getElementById("clear-Scores");
 let ranks = [];
-let scoreCount = 0;
+let myScore = 0;
 let shuffledQuestions, currentQuestionIndex
 let countDownTimer = document.querySelector(".countdownTimer");
 
@@ -21,7 +21,7 @@ let gameName = document.querySelector(".gameTitle");
 gameName.innerHTML = "WordWise Trivia Game";
 
 //*****Set Timer/ Game Duration****** */
-let secondsLeft = 121;
+let timeLeft = 121;
 
 
 //============- Clear Storage -============================
@@ -29,6 +29,7 @@ clearScores.addEventListener('click', clearPlayerScores)
 
 function clearPlayerScores() {
     window.localStorage.clear();
+    document.getElementById("rank-list").innerHTML = "";
 }
 
 
@@ -36,9 +37,9 @@ function clearPlayerScores() {
 export function setTime() {
     // Set interval in variable
     let timerInterval = setInterval(function () {
-        secondsLeft--;
-        countDownTimer.textContent = "Timer: " + secondsLeft;
-        if (secondsLeft <= 0) {
+        timeLeft--;
+        countDownTimer.textContent = "Timer: " + timeLeft;
+        if (timeLeft <= 0) {
             clearInterval(timerInterval);
             gameOver(); //Run Game Over Function
         }
@@ -52,58 +53,44 @@ function gameOver() {
 
 
 //============- Scoreboard -============================
-// Renders items into <li>
 function renderRanks() {
-    // Clear ranks and update rank count
-    rankList.innerHTML = "";
-    rankCountSpan.textContent = ranks.length; //<----------------------------------------Comment out to see
-    // Render a new li for each player entry
-    for (let i = 0; i < ranks.length; i++) {
-        let rank = ranks[i];
-        let li = document.createElement("li");
-        li.textContent = rank;
-        li.setAttribute("data-index", i);
-    
-        startButton.classList.remove('hide')
-        scoreRank.classList.add("hide")
-    };
+
+    startButton.classList.remove('hide')
+    scoreRank.classList.add("hide")
+    //  };
 }
 
 function scoreboardInit() {
     // Get stored ranks from localStorage
-    let storedRanks = JSON.parse(localStorage.getItem("playerRanks")) || [];
-    // If ranks were retrieved from localStorage, update the ranks array to it
-    console.log(storedRanks)
-        rankList.innerHTML = storedRanks
-            .map(score => {
-                return `<li class="high-score">${score.Player}-${score.Score}</li>`;
-            }).join("");
-    if (storedRanks !== null) {
-        rankList = storedRanks;
+    const storedRanks = JSON.parse(localStorage.getItem("playerRanks")) || [];
 
-    }
+    storedRanks.forEach((score) => {
+        const liElement = document.createElement("li");
+        liElement.innerHTML = `${score.Player} - ${score.Score}`;
+        document.getElementById("rank-list").appendChild(liElement);
+    })
+
+
     // This is a helper function that will render ranks to the DOM
     renderRanks();
+    // rankList.appendChild;
 
 }
 
 function storeRanks() {
     // Stringify and set key in localStorage to todos array
-    localStorage.setItem("playerRanks", JSON.stringify(ranks));
+    window.localStorage.setItem("playerRanks", JSON.stringify(ranks));
 }
 
 // Add submit event to form
 rankForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    console.log(scoreCount)
     let rankText = {
         Player: rankInput.value.trim(),
-        Score: scoreCount
+        Score: myScore
     };
-    rankList.push(rankText);
-    localStorage.setItem("playerRanks", JSON.stringify(rankText));
-    // if rankText is empty string exit function
-    if (rankText === "") {
+
+    if (rankInput.value === "") {
         return;
     }
 
@@ -114,6 +101,7 @@ rankForm.addEventListener("submit", function (event) {
     // Store updated todos in localStorage, re-render the list
     storeRanks();
     renderRanks();
+    scoreboardInit();
 });
 
 
@@ -127,9 +115,10 @@ answerButtonsElement.addEventListener('click', () => {
 function startGame() {
     startButton.classList.add('hide') //Hide start button after start button is pressed
     shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0 // <-----------------------------------------------------------------if index=10 then return?
+    currentQuestionIndex = 0 
     questionContainerElement.classList.remove('hide')
-    secondsLeft = 121;
+    timeLeft = 121;
+    scoreEl.textContent ="0"
     setTime();
     setNextQuestion()
 }
@@ -148,7 +137,7 @@ function showQuestion(question) {
         if (answer.correct) {
             button.dataset.correct = answer.correct
         }
-        button.addEventListener('click', selectAnswer)
+        button.addEventListener('click', response)
         answerButtonsElement.appendChild(button)
     })
 }
@@ -160,30 +149,29 @@ function resetState() {
     }
 }
 
-function selectAnswer(e) {
+function response(e) {
     let selectedButton = e.target
     let correct = selectedButton.dataset.correct
     processResults(correct);
-    console.log(correct);
-    Array.from(answerButtonsElement.children).forEach(button => {})
     if (shuffledQuestions.length > currentQuestionIndex + 1) {} else {
-        secondsLeft = 0
-        questionContainerElement.classList.add("hide")
+        timeLeft = 0;
+        currentQuestionIndex = 0;
+        questionContainerElement.classList.add("hide");
         startButton.innerText = 'Restart'
-        scoreRank.classList.remove("hide")
+        scoreRank.classList.remove("hide");
 
     }
 }
 
 function processResults(isCorrect) {
     if (!isCorrect) {
-        secondsLeft = secondsLeft - 15;
+        timeLeft = timeLeft - 15;
         return;
     }
-    scoreCount = parseInt(countE1.textContent, 10) || 0;
+    myScore = parseInt(scoreEl.textContent, 10) || 0;
     //increase point value
-    scoreCount = scoreCount + 25;
-    countE1.textContent = scoreCount;
+    myScore = myScore + 25;
+    scoreEl.textContent = myScore;
     //next question
 }
 
